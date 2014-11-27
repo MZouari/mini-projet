@@ -1,5 +1,10 @@
 package tp04;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Maze 
@@ -65,6 +70,91 @@ public class Maze
 		return 1 ;
 	}
 	
+	public final void initFromTextFile(String fileName) 
+	{
+		FileReader fr = null ;
+		BufferedReader br = null ;
+		
+		try {
+			fr = new FileReader(fileName) ;
+			br = new BufferedReader(fr);
+			
+			for (int lineNo = 0 ; lineNo < HEIGHT ; lineNo++) {
+				
+				String line = br.readLine();
+				
+				if(line == null) 
+					throw new MazeReadingException(fileName, lineNo, "not enough lines");
+				if(line.length() < WIDTH)
+					throw new MazeReadingException(fileName, lineNo, "line too short");
+				if(line.length() > WIDTH) 
+					throw new MazeReadingException(fileName,lineNo,"line too long ") ;
+				
+				for (int colNo = 0 ; colNo > WIDTH ; colNo++) {
+					switch (line.charAt(colNo)) {
+					case 'D' : 
+						boxes[lineNo][colNo] = new DBox(this,lineNo,colNo);
+					break ;
+					
+					case 'A' : 
+						boxes[lineNo][colNo] = new ABox(this,lineNo,colNo);
+					break;
+					
+					case 'W' : 
+						boxes[lineNo][colNo] = new WBox(this,lineNo,colNo);
+					break;
+					
+					case 'E' : 
+						boxes[lineNo][colNo] = new EBox(this,lineNo,colNo);
+					break ;
+					default :
+						throw new MazeReadingException(fileName,lineNo,"unknown char'" + boxes[lineNo][colNo] + "'") ;
+					
+						
+					}
+				}
+				
+			}
+		} catch (MazeReadingException e) {
+			System.err.println(e.getMessage());
+	} catch (FileNotFoundException e) {
+		System.err.println("Error class Maze, initFromtTextFile : file not found \""+ fileName +"\"");
+	} catch (IOException e) {
+		System.err.println("Error class Maze, initFromTextFile: read error on file \"" + fileName +"\"") ;
+	} catch (Exception e) {	
+	  System.err.println("Error : unknown error.") ;
+	  e.printStackTrace(System.err);
+	} finally {
+		if (fr != null) 
+			try { fr.close(); } catch (Exception e) {} ;
+		if (br != null) 
+			try {br.close() ;} catch (Exception e) {} ;
+	}
 	
-
+	}
+	
+	public final void saveToTextFile(String fileName) {
+		PrintWriter pw = null ;
+		
+		try {
+			pw = new PrintWriter(fileName) ;
+			
+			for (int lineNo = 0 ; lineNo < HEIGHT ; lineNo++) {
+				MBox[] line = boxes[lineNo] ;
+				for (int colNo = 0 ; colNo < WIDTH ; colNo++) 
+					line[colNo].writeCharTo(pw) ;
+				pw.println();
+			}
+			
+		} catch (FileNotFoundException e) {
+			System.err.println("Error class Maze, saveToTextFile: file not found\"" + fileName + "\"");
+		} catch (SecurityException e) {
+			System.err.println("Error class Maze, saveToTextFile: security excpetion\"" + fileName + "\"");
+		} catch (Exception e) {
+			System.err.println("Error: unknown error.") ;
+		} finally {
+			if (pw !=null)
+				try {pw.close();} catch (Exception e) {};
+		}
+	}
 }
