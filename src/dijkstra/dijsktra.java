@@ -1,4 +1,4 @@
-package tp04;
+package dijkstra;
 
 import java.util.ArrayList;
 
@@ -6,9 +6,10 @@ public class dijsktra
 {
 	public static PreviousInterface dijsktra(graphInterface g, VertexInterface r)
 	{ 
-		return dijsktra (g, r, new ASet(), new Pi(), new Previous());
+     
+		return dijsktra(g,r,new ASet(),new Pi(),new Previous()) ;
 	}
-private static PreviousInterface dijsktra(graphInterface    g,
+    private static PreviousInterface dijsktra(graphInterface    g,
 		                                  VertexInterface   r,
 		                                  ASetInterface     a,
 		                                  PiInterface       pi,
@@ -32,7 +33,7 @@ private static PreviousInterface dijsktra(graphInterface    g,
 		ArrayList<VertexInterface> pivotSuccessors = g.getSuccessors(pivot) ;
 		for (VertexInterface y : pivotSuccessors)	{
 			if (! a.contains(y)) {
-				int newPi = piPivot + g.getweight(pivot,y);
+				int newPi = piPivot + g.getWeight(pivot,y);
 				if (newPi < pi.getValue(y)) {
 					pi.setValue(y,newPi);
 					previous.setValue(y,pivot);
@@ -60,9 +61,10 @@ private static PreviousInterface dijsktra(graphInterface    g,
 			
 		}
 		
-		return previous;
 	}
-}
+    return previous;
+  }
+
 }
 
 	

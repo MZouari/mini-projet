@@ -1,4 +1,4 @@
-package tp04;
+package maze;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+
+import dijkstra.VertexInterface;
+import dijkstra.graphInterface;
 
 public class Maze 
    implements graphInterface{

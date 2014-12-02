@@ -1,4 +1,4 @@
-package tp04;
+package maze;
 
 import java.io.PrintWriter;
 
