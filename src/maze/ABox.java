@@ -11,5 +11,11 @@ public class ABox extends MBox{
 	public final void writeCharTo(PrintWriter pw) {
 		pw.print('A');
 	}
+	
+	public String getSymbol() {
+		
+		return "A";
+		
+	}
 
 }

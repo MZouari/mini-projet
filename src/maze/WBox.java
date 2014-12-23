@@ -19,4 +19,10 @@ public class WBox extends MBox {
 	 pw.print('W');
  }
  
+ public String getSymbol() {
+		
+		return "W";
+		
+	}
+ 
 }

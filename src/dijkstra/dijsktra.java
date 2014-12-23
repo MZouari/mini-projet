@@ -2,14 +2,14 @@ package dijkstra;
 
 import java.util.ArrayList;
 
-public class dijsktra
+public class Dijsktra
 {
-	public static PreviousInterface dijsktra(graphInterface g, VertexInterface r)
+	public static PreviousInterface dijsktra(GraphInterface g, VertexInterface r)
 	{ 
      
 		return dijsktra(g,r,new ASet(),new Pi(),new Previous()) ;
 	}
-    private static PreviousInterface dijsktra(graphInterface    g,
+    private static PreviousInterface dijsktra(GraphInterface    g,
 		                                  VertexInterface   r,
 		                                  ASetInterface     a,
 		                                  PiInterface       pi,

@@ -1,5 +1,8 @@
 package maze;
 
+import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,10 +11,12 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import dijkstra.VertexInterface;
-import dijkstra.graphInterface;
+import dijkstra.GraphInterface;
+import fr.enst.inf103.ui.MazeView;
+import fr.enst.inf103.ui.MazeViewSource;
 
 public class Maze 
-   implements graphInterface{
+   implements GraphInterface, MazeViewSource{
 	
 	public static final int WIDTH = 10 ;
 	public static final int HEIGHT = 10 ;
@@ -159,5 +164,63 @@ public class Maze
 			if (pw !=null)
 				try {pw.close();} catch (Exception e) {};
 		}
+	}
+
+	
+	public boolean drawMaze(Graphics arg0, MazeView arg1) {
+		
+		return false;
+	}
+
+	
+	public int getHeight() {
+		
+		return HEIGHT;
+	}
+
+	
+	public String getSymbolForBox(int line, int column) {
+		
+		return this.getBox(line, column).getSymbol();
+	}
+
+	
+	public int getWidth() {
+	
+		return WIDTH;
+	}
+
+	
+	public boolean handleClick(MouseEvent arg0, MazeView arg1) {
+		
+		return false;
+	}
+
+
+	public boolean handleKey(KeyEvent arg0, MazeView arg1) {
+		
+		return false;
+	}
+
+	
+	public void setSymbolForBox(int line, int column, String symbol) {
+		
+		switch(symbol) {
+		
+		case "E" : boxes[line][column] = new EBox (this, line, column) ; 
+		break;
+		
+		case "A" : boxes[line][column] = new ABox (this, line, column) ; 
+		break;
+		
+		case "D" : boxes[line][column] = new DBox (this, line, column) ; 
+		break;
+		
+		case "W" : boxes[line][column] = new WBox (this, line, column) ; 
+		break;
+		
+		}
+		
+		
 	}
 }

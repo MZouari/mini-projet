@@ -11,5 +11,11 @@ public class DBox extends MBox {
   public final void writeCharTo(PrintWriter pw) {
 	  pw.print('D');
   }
+  
+  public String getSymbol() {
+		
+		return "D";
+		
+	}
 }
  

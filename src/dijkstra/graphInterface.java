@@ -2,7 +2,7 @@ package dijkstra;
 
 import java.util.ArrayList;
 
-public interface graphInterface {
+public interface GraphInterface {
 	
 	public ArrayList<VertexInterface> getAllVertices() ;
 	

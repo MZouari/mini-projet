@@ -6,6 +6,7 @@ import dijkstra.VertexInterface;
 
 public abstract class MBox 
      implements VertexInterface {
+	
 	private final Maze maze ;
 	private final int line ;
 	private final int column ;
@@ -36,7 +37,12 @@ public abstract class MBox
 	public final int getColumn()
 	{
 		return column ;
-    } 
+    }
+
+	public  abstract String getSymbol() ;
+		
+	
+		
 
  
     
