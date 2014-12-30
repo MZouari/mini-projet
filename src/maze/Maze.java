@@ -15,11 +15,15 @@ import dijkstra.GraphInterface;
 import fr.enst.inf103.ui.MazeView;
 import fr.enst.inf103.ui.MazeViewSource;
 
-public class Maze 
+public class Maze extends MazeView
    implements GraphInterface, MazeViewSource{
 	
+	
+	private static final long serialVersionUID = 1L;
 	public static final int WIDTH = 10 ;
 	public static final int HEIGHT = 10 ;
+
+	
 	
 	private final MBox [][] boxes ; 
 	
@@ -101,20 +105,24 @@ public class Maze
 				for (int colNo = 0 ; colNo > WIDTH ; colNo++) {
 					switch (line.charAt(colNo)) {
 					case 'D' : 
-						boxes[lineNo][colNo] = new DBox(this,lineNo,colNo);
-					break ;
+						boxes[lineNo][colNo] = new DBox(this, lineNo,colNo) ;
+					    break ;
 					
 					case 'A' : 
-						boxes[lineNo][colNo] = new ABox(this,lineNo,colNo);
-					break;
+					    boxes[lineNo][colNo] = new ABox(this, lineNo, colNo);
+					    break;
+					    
 					
 					case 'W' : 
 						boxes[lineNo][colNo] = new WBox(this,lineNo,colNo);
-					break;
+					    break;
 					
 					case 'E' : 
 						boxes[lineNo][colNo] = new EBox(this,lineNo,colNo);
-					break ;
+					    break ;
+					
+					
+						
 					default :
 						throw new MazeReadingException(fileName,lineNo,"unknown char'" + boxes[lineNo][colNo] + "'") ;
 					
@@ -221,6 +229,23 @@ public class Maze
 		
 		}
 		
+		
+	}
+
+	
+
+	public void newMaze() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void clearPathBox() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void calculateShortestPath() {
+		// TODO Auto-generated method stub
 		
 	}
 }

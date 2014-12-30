@@ -1,38 +1,52 @@
 package tp04;
 
+import maze.Maze;
 import fr.enst.inf103.ui.MazeViewController;
 import fr.enst.inf103.ui.MazeViewSource;
 
 public class MazeController implements MazeViewController {
 
-	@Override
-	public void calculateShortestPath() {
-		// TODO Auto-generated method stub
-
+	private Maze maze ; 
+	
+	public void calculateShortestPath() {	
+    maze.clearPathBox();
+    maze.calculateShortestPath();
 	}
 
-	@Override
+
 	public MazeViewSource getMazeViewSource() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (MazeViewSource)maze;
 	}
 
-	@Override
+	
 	public MazeViewSource newMaze() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		maze = new Maze();
+		maze.newMaze() ;
+		return (MazeViewSource)maze ;
 	}
 
-	@Override
-	public MazeViewSource openMaze(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public MazeViewSource openMaze(String filePath) {
+		
+		maze = new Maze();
+		maze.newMaze();
+		maze.initFromTextFile(filePath);
+		return (MazeViewSource)maze;
+		
+
 	}
 
-	@Override
-	public void saveMazeAs(String arg0) {
-		// TODO Auto-generated method stub
-
+	
+	public void saveMazeAs(String filePath) {
+		
+		maze.saveToTextFile(filePath);
+		
+        
 	}
+
+
+	
 
 }
